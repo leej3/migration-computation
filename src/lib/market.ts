@@ -12,5 +12,6 @@ export const fetchLiveFx = async (): Promise<LiveMarketSnapshot> => {
     source: "Frankfurter (ECB reference data)",
     fxRateUsdPerEur: payload.rates.USD,
     observedAt: payload.date,
+    fetchedAt: new Date().toISOString(),
   };
 };
