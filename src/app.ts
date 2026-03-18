@@ -5,7 +5,7 @@ import {
   simulateStrategy,
 } from "./lib/finance";
 import { DEFAULT_SOURCE_LINKS, defaultPlanningData, HORIZON_LIMIT } from "./lib/defaults";
-import { clamp, toCurrency, toMonthLabel, toNumber, toPercent } from "./lib/format";
+import { clamp, toCurrency, toDateTimeLabel, toMonthLabel, toNumber, toPercent } from "./lib/format";
 import { fetchLiveFx } from "./lib/market";
 import {
   createBlankProfile,
@@ -357,7 +357,9 @@ const renderTabContent = (
           ${
             liveMarket
               ? `<h2>${toNumber(liveMarket.fxRateUsdPerEur, 4)} USD/EUR</h2>
-                 <p>${escapeHtml(liveMarket.source)} as of ${escapeHtml(liveMarket.observedAt)}.</p>
+                 <p>${escapeHtml(liveMarket.source)} reference date ${escapeHtml(
+                   liveMarket.observedAt,
+                 )}. Fetched ${escapeHtml(toDateTimeLabel(liveMarket.fetchedAt))} local time.</p>
                  <button class="ghost-button" data-action="apply-live-fx">Apply to all scenarios</button>`
               : `<p>${escapeHtml(marketError ?? "Fetching live FX reference...")}</p>`
           }

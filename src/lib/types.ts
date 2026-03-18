@@ -203,4 +203,5 @@ export interface LiveMarketSnapshot {
   source: string;
   fxRateUsdPerEur: number;
   observedAt: string;
+  fetchedAt: string;
 }

@@ -20,6 +20,8 @@ export const toPercent = (value: number, digits = 1): string => `${toNumber(valu
 
 export const toMonthLabel = (value: string): string => format(parseISO(value), "MMM yyyy");
 
+export const toDateTimeLabel = (value: string): string => format(parseISO(value), "d MMM yyyy, HH:mm");
+
 export const slugify = (value: string): string =>
   value
     .toLowerCase()

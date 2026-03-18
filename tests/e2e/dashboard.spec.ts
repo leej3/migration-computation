@@ -15,6 +15,7 @@ test("renders the dashboard and carries edited inputs across tabs", async ({ pag
     }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: /USD\/EUR/ })).toBeVisible();
+  await expect(page.getByText(/Fetched .* local time\./)).toBeVisible();
 
   await page.getByRole("button", { name: "inputs" }).click();
   await page.getByRole("spinbutton", { name: "Close month" }).fill("3");
