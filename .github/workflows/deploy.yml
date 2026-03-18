@@ -3,6 +3,7 @@
 # Prerequisites (managed outside this repo):
 # - Cloudflare Pages project "migration-computation" created
 # - GitHub secret CF_API_KEY configured with Pages Edit permission
+# - GitHub secret CF_ACCOUNT_ID configured with the Cloudflare account id
 
 name: Deploy to Cloudflare Pages
 
@@ -65,10 +66,12 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: wrangler pages deploy ./${{ env.BUILD_DIR }} --project-name ${{ env.PROJECT_NAME }} --branch ${{ github.head_ref }}
 
       - name: Deploy production
         if: github.event_name == 'push'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: wrangler pages deploy ./${{ env.BUILD_DIR }} --project-name ${{ env.PROJECT_NAME }} --branch main --commit-dirty=true
